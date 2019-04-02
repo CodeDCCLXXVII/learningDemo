@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import ke.co.safaricom.demo.model.Product;
 
 /**
@@ -23,7 +25,7 @@ import ke.co.safaricom.demo.model.Product;
 
 @RestController
 @RequestMapping("/product")
-@Api(value="Online store", description="Operations pertaining to products in context")
+@Api(tags = {"products"})
 public class ProductController {
 
 	private static Map<String, Product> productRepo = new HashMap<>();
@@ -36,6 +38,10 @@ public class ProductController {
 	}
 	
 	@ApiOperation(value="View a list of available Products", response = Product.class )
+	@ApiResponses(value = {
+			@ApiResponse( code =200, message = "Successfully retrived product list"),
+			@ApiResponse(code=401, message = "You are not authorized to view the resource")
+	})
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ResponseEntity<Object> getProducts(){
 		

@@ -3,13 +3,17 @@
  */
 package ke.co.safaricom.demo.model;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * @author dcclxxvii
  *
  */
 public class Product {
 	
+	@ApiModelProperty(notes = "Product id")
 	private String id;
+	@ApiModelProperty(notes = "Product name")
 	private String name;
 	
 	public Product(String id, String name) {
